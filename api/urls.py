@@ -1,7 +1,11 @@
-from django.conf.urls.defaults import *
+# urls
+# -*- coding: utf-8 -*-
+
+from django.conf.urls.defaults import patterns, url
 from piston.resource import Resource
-from piston.authentication import HttpBasicAuthentication, OAuthAuthentication
-from piston.doc import documentation_view
+#from piston.authentication import HttpBasicAuthentication
+from piston.authentication import OAuthAuthentication
+#from piston.doc import documentation_view
 
 from api.handlers import BlogpostHandler
 

@@ -1,3 +1,6 @@
+# handler
+# -*- coding: utf-8 -*-
+
 from piston.handler import BaseHandler, AnonymousBaseHandler
 from piston.utils import rc, require_mime, require_extended
 
@@ -8,16 +11,16 @@ class BlogpostHandler(BaseHandler):
     Authenticated entrypoint for blogposts.
     """
     model = Blogpost
-    
-    def read(self, request): # title=None):
-        print "read ", attrs
+
+    def read(self, request, title=None):
+        #print "read ", attrs
         base = Blogpost.objects
-        
+
         if title:
             return base.get(title=title)
         else:
             return base.all()
-    
+
     def create(self, request):
         """ Creates a new blogpost.  """
         attrs = self.flatten_dict(request.POST)
@@ -28,4 +31,3 @@ class BlogpostHandler(BaseHandler):
             post = Blogpost(title=attrs['title'], content=attrs['content'], author=request.user)
             post.save()
         return post
- 

@@ -3,32 +3,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+  <head>
+    <title>Blogposts</title>
+  </head>
 
-<title>Blogposts</title>
+  <body>
+    <h1>Posts</h1>
 
-</head>
+    {% if user.is_authenticated %}
+      {{ user.username }}
+      <a href="{% url logout %}">Logout</a>
+    {% else %}
+      <a href="{% url login %}">Login</a>
+    {% endif %}
 
-<body>
+    {% for post in posts %}
 
-	<h1>Posts</h1>
-	
-	{% for post in posts %}
-	
-		<h3>{{ post.title }}</h3>
-	
-		<div>
-			
-			{{ post.content}}
-			
-		</div>
-		
-		<div>
-			Written on {{ post.created_on }} by {{ post.author.username }}.
-		</div>
-	
-	{% endfor %}
+      <h3>{{ post.title }}</h3>
 
-</body>
+      <div>
+        {{ post.content}}
+      </div>
+
+      <div>
+        Written on {{ post.created_on }} by {{ post.author.username }}.
+      </div>
+
+    {% endfor %}
+
+  </body>
 
 </html>
